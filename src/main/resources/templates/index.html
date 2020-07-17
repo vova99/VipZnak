@@ -251,7 +251,7 @@
                 
                 <div class="row">
                     <div class="col-md-4 p-5">
-                          <img src="https://stendprint.com.ua/upload/iblock/67e/67ea196a451e1e29020121e4ddfe1d67.jpg" class="card-img-top" alt="...">
+                          <img id="td11img" src="img/tables/td11blue.png" class="card-img-top" alt="...">
                             <h5 class="card-title mt-3">TD - 01</h5>
                             <p>
                                 Price: 123<br>
@@ -265,11 +265,10 @@
                                 </div>
                             </div>
                             <div class="input_field">
-                                <select class="wide">
-                                    <option data-display="Колір">Колір</option>
-                                    <option value="1" selected="true">Синій</option>
-                                    <option value="2">Червоний</option>
-                                    <option value="3">Зелений</option>
+                                <select class="wide" id="td11" onchange="changeFunc(this.id)">
+                                    <option value="blue" selected="true">Синій</option>
+                                    <option value="red">Червоний</option>
+                                    <option value="green">Зелений</option>
                                 </select>
                             </div>
                             
@@ -456,7 +455,32 @@
 
     <script src="js/main.js"></script>
 
+    <script type="text/javascript">
+        function changeFunc(selectID) {
 
+
+            //var selectID = event.srcElement.id;
+            console.log(selectID);
+            var imgID = selectID+"img";
+            var selectBox = document.getElementById(selectID);
+            console.log(selectBox);
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            console.log(selectedValue)
+            var imgPath = "/img/tables/"+selectID+selectedValue+".png";
+            console.log(imgPath)
+
+            var new_image = new Image();
+            var image =  document.getElementById(imgID);
+            //set up the new image
+            new_image.id = imgID;
+            new_image.src = imgPath;
+            new_image.classList.add("card-img-top");
+            // insert new image and remove old
+            image.parentNode.insertBefore(new_image,image);
+            image.parentNode.removeChild(image);
+
+        }
+    </script>
 
 
 </body>

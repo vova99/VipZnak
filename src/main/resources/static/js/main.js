@@ -437,7 +437,7 @@ mailChimp();
         });
 
         // prise slider 
-        
+
 
 
 
