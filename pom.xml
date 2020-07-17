@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.vipznak</groupId>
 	<artifactId>adressTBL</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>adressTBL</name>
 	<description>Shop of adress tables</description>
 
