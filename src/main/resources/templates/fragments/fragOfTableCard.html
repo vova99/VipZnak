@@ -1,0 +1,68 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="allTableList">
+
+    <section>
+        <div class="container mt-5">
+            <div class="section-top-border">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section_title mb-50 text-center">
+                            <h3>
+                                Форма та розмір
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 p-3 cardTable" th:each="tb : ${tables}">
+                        <div class="" th:if="!${tb.colorList.isEmpty()}">
+                            <img id="td11img" th:src="@{${tb.colorList.get(0).imgPath}}" class="card-img-top" alt="...">
+                            <h5 class="card-title mt-3" th:text="'Назва: '+${tb.nameTable}"></h5>
+                            <div class="switch-wrap d-flex justify-content-between">
+                                <p class="smallText">Світлоповертаюча основа (+180 грн)</p>
+                                <div class="primary-switch">
+                                    <input type="checkbox" id="primary-switch1" >
+                                    <label for="primary-switch1"></label>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input_field">
+                                            <select class="wide" id="td11" onchange="changeFunc(this.id)">
+                                                <div th:each="cl, index : ${tb.colorList}">
+                                                    <option value="${tb.tableID}" selected="true" th:if="${index.count}==1" th:text="${cl.getColorName()}"></option>
+                                                    <option value="${tb.tableID}"  th:if="${index.count}!=1" th:text="${cl.colorName}"></option>
+                                                </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input_field">
+                                            <select class="wide" id="" onchange="">
+                                                <div>
+                                                    <option value="${tb.sizeSmall}" selected="true" th:if="${tb.sizeSmall}!=null" th:text="${tb.sizeSmall}"></option>
+                                                    <option value="${tb.sizeBig}"  th:if="${tb.sizeBig}!=null" th:text="${tb.sizeBig}"></option>
+                                                </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="float-left mt-3">Ціна: <span id="td11price" th:text="${tb.priceForSmall}"></span>грн</p>
+                                <a th:href="@{/orderTable}" class="genric-btn primary radius float-right mt-2" onclick="orderBtn(this.id)" id="td11btn">Замовити</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</th:block>

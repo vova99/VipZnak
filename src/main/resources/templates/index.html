@@ -43,7 +43,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="logo">
+                                    <img th:src="@{img/logo.png}" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -226,60 +226,9 @@
         
   
               <!-- tables  -->
-    <section>
-        <div class="container mt-5">
-            <div class="section-top-border">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section_title mb-50 text-center">
-                            <h3>
-                                Форма та розмір
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4 p-3 cardTable" >
-                        <div class="">
-                            <img id="td11img" src="img/tables/td11blue.png" class="card-img-top" alt="...">
-                            <h5 class="card-title mt-3">Код товару: TD - 01</h5>
-                            <p>
-                                Розмір: 123*111mm
-                            </p>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p class="smallText">Світлоповертаюча основа (+180 грн)</p>
-                                <div class="primary-switch">
-                                    <input type="checkbox" id="primary-switch1" >
-                                    <label for="primary-switch1"></label>
-                                </div>
-                            </div>
-                            <div class="input_field">
-                                <select class="wide" id="td11" onchange="changeFunc(this.id)">
-                                    <option value="blue" selected="true">Синій</option>
-                                    <option value="red">Червоний</option>
-                                    <option value="green">Зелений</option>
-                                    <option value="yellow">Жовтий</option>
-                                    <option value="burgundia">Бургундія</option>
-                                    <option value="brown">Коричневий</option>
-                                    <option value="biedge">Бежевий</option>
-                                    <option value="black">Чорний</option>
-                                    <option value="gold">Золотий</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p class="float-left mt-3">Ціна: <span id="td11price">123</span>грн</p>
-                                <a href="#orderForm" class="genric-btn primary radius float-right mt-2" onclick="orderBtn(this.id)" id="td11btn">Замовити</a>
-                            </div>
 
-                        </div>
-                    </div>
+        <div th:replace="~{fragments/fragOfTableCard :: allTableList}"></div>
 
-
-                </div>
-            </div>
-        </div>
-    </section>
 
    <!--   -->
    <section id="orderForm">

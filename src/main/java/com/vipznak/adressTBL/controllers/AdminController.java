@@ -62,6 +62,8 @@ public class AdminController {
         return "adminPage";
     }
 
+
+
     @PostMapping("/addColor-{id}")
     public String addColor(@PathVariable("id")int id, @RequestParam MultipartFile photo, Model model, ColorOfTables color) throws IOException {
         Tables table = tablesService.findById(id);
@@ -70,7 +72,7 @@ public class AdminController {
         photo.transferTo(new File(path+table.getTableID()+photo.getOriginalFilename()));
 
 
-        color.setImgPath("/img/"+table.getTableID()+photo.getOriginalFilename());
+        color.setImgPath("/images/"+table.getTableID()+photo.getOriginalFilename());
         colorService.save(color);
         table.getColorList().add(color);
         tablesService.save(table);
