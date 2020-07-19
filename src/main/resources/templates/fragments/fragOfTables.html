@@ -1,0 +1,130 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="allTables">
+    <div class="container">
+        <form class="form" method="post" th:action="@{/addTable}">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Додати таблицю</h2>
+                    <div class="form-group">
+                        <label for="nameTable">Назва таблиці</label>
+                        <input type="text" class="form-control" id="nameTable" name="nameTable">
+                    </div>
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="sizeSmall">Малий розмір</label>
+                    <input type="text" class="form-control" id="sizeSmall" name="sizeSmall">
+                </div>
+                <div class="col-6 form-group">
+                    <label for="sizeBig">Великий розмір</label>
+                    <input type="text" class="form-control" id="sizeBig" name="sizeBig">
+                </div>
+                <div class="col-6 form-group">
+                    <label for="priceForSmall">Ціна за малу таблицю</label>
+                    <input type="text" class="form-control" id="priceForSmall" name="priceForSmall">
+                </div>
+                <div class="col-6 form-group">
+                    <label for="priceForBig">Ціна за велику таблицю</label>
+                    <input type="text" class="form-control" id="priceForBig" name="priceForBig">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- Table of adressTables   -->
+    <section class="container-fluid p-0 mt-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Розмір малих</th>
+                    <th scope="col">Розмір великих</th>
+                    <th scope="col">Ціна малих</th>
+                    <th scope="col">Ціна великих</th>
+                    <th scope="col">Дії</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="tb, index : ${tables}">
+                    <th scope="row" th:text="${index.count}"></th>
+                    <td th:text="${tb.nameTable}"></td>
+                    <td th:text="${tb.sizeSmall}"></td>
+                    <td th:text="${tb.sizeBig}"></td>
+                    <td th:text="${tb.priceForSmall}"></td>
+                    <td th:text="${tb.priceForBig}"></td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a th:href="@{'/admin/changeFurnitureType-'+${tb.tableID}}" class="btn btn-primary">Змінити</a>
+                            <a th:href="@{'/changeColor-'+${tb.tableID}}" class="btn btn-warning">Кольори</a>
+                            <a th:href="@{'/deleteTable-'+${tb.tableID}}" class="btn btn-danger">Видалити</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</th:block>
+
+<!--Color page-->
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="colorChange">
+
+
+
+    <div class="container">
+        <form class="form" method="post" th:action="@{'/addColor-'+${table.tableID}}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12">
+                    <h2 th:text="${table.nameTable}"></h2>
+                    <h2>Додати колір до таблиці</h2>
+                    <div class="form-group">
+                        <label for="colorName">Назва кольру</label>
+                        <input type="text" class="form-control" id="colorName" name="colorName">
+                    </div>
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="photo">Малий розмір</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <section class="container-fluid p-0 mt-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Назва</th>
+                        <th scope="col">Фото</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="col, index : ${colors}">
+                        <th scope="row" th:text="${index.count}"></th>
+                        <td th:text="${col.colorName}"></td>
+                        <td><img th:src="${col.imgPath}" height="50"></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a th:href="@{'/deleteColor-'+${col.colorID}+'-'+${table.tableID}}" class="btn btn-danger">Видалити</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</th:block>

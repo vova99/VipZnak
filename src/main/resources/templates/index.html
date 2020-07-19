@@ -57,10 +57,6 @@
                                         <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
                                     </ul>
                                 </div>
-
-                                <div class="book_btn d-none d-lg-block">
-                                    <a class="boxed-btn3-line" href="#">Замовити дзвінок</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -244,17 +240,17 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-4 p-5">
-                          <img id="td11img" src="img/tables/td11blue.png" class="card-img-top" alt="...">
-                            <h5 class="card-title mt-3">TD - 01</h5>
+                    <div class="col-md-4 p-3 cardTable" >
+                        <div class="">
+                            <img id="td11img" src="img/tables/td11blue.png" class="card-img-top" alt="...">
+                            <h5 class="card-title mt-3">Код товару: TD - 01</h5>
                             <p>
-                                Price: 123<br>
-                                Size: 123*111mm    
+                                Розмір: 123*111mm
                             </p>
-                             <div class="switch-wrap d-flex justify-content-between">
-                                <p>Світлоповертаюча основа</p>
+                            <div class="switch-wrap d-flex justify-content-between">
+                                <p class="smallText">Світлоповертаюча основа (+180 грн)</p>
                                 <div class="primary-switch">
-                                    <input type="checkbox" id="primary-switch1" checked>
+                                    <input type="checkbox" id="primary-switch1" >
                                     <label for="primary-switch1"></label>
                                 </div>
                             </div>
@@ -263,44 +259,30 @@
                                     <option value="blue" selected="true">Синій</option>
                                     <option value="red">Червоний</option>
                                     <option value="green">Зелений</option>
+                                    <option value="yellow">Жовтий</option>
+                                    <option value="burgundia">Бургундія</option>
+                                    <option value="brown">Коричневий</option>
+                                    <option value="biedge">Бежевий</option>
+                                    <option value="black">Чорний</option>
+                                    <option value="gold">Золотий</option>
                                 </select>
                             </div>
-                            
-                           
-                            <a href="#" class="genric-btn primary radius float-right mt-2">Замовити</a>
-                    </div>
-                    <div class="col-md-4 p-5">
-                        <img id="td04img" src="img/tables/td04blue.png" class="card-img-top" alt="...">
-                        <h5 class="card-title mt-3">TD - 01</h5>
-                        <p>
-                            Price: 123<br>
-                            Size: 123*111mm
-                        </p>
-                        <div class="switch-wrap d-flex justify-content-between">
-                            <p>Світлоповертаюча основа</p>
-                            <div class="primary-switch">
-                                <input type="checkbox" id="primary-switch2" checked>
-                                <label for="primary-switch2"></label>
+                            <div>
+                                <p class="float-left mt-3">Ціна: <span id="td11price">123</span>грн</p>
+                                <a href="#orderForm" class="genric-btn primary radius float-right mt-2" onclick="orderBtn(this.id)" id="td11btn">Замовити</a>
                             </div>
-                        </div>
-                        <div class="input_field">
-                            <select class="wide" id="td04" onchange="changeFunc(this.id)">
-                                <option value="blue" selected="true">Синій</option>
-                                <option value="red">Червоний</option>
-                                <option value="green">Зелений</option>
-                            </select>
-                        </div>
 
-
-                        <a href="#" class="genric-btn primary radius float-right mt-2">Замовити</a>
+                        </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
     </section>
 
    <!--   -->
-   <section>
+   <section id="orderForm">
           <div class="Estimate_area overlay">
         <div class="container">
             <div class="row">
@@ -313,7 +295,7 @@
                 </div>
                 <div class="col-xl-8 col-lg-8 col-md-7">
                     <div class="form">
-                        <form action="#">
+                        <form action="/sendOrder" method="post" >
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="input_field">
@@ -327,16 +309,21 @@
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Код товару">
+                                        <input id="tableId" type="text" placeholder="Код товару">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="input_field">
                                         <select class="wide">
-                                            <option data-display="Колір">Колір</option>
-                                            <option value="1">Синій</option>
-                                            <option value="2">Червоний</option>
-                                            <option value="3">Зелений</option>
+                                            <option value="blue" selected="true">Синій</option>
+                                            <option value="red">Червоний</option>
+                                            <option value="green">Зелений</option>
+                                            <option value="yellow">Жовтий</option>
+                                            <option value="burgundia">Бургундія</option>
+                                            <option value="brown">Коричневий</option>
+                                            <option value="biedge">Бежевий</option>
+                                            <option value="black">Чорний</option>
+                                            <option value="gold">Золотий</option>
                                         </select>
                                     </div>
                                 </div>
@@ -422,15 +409,15 @@
                 <div class="col-xl-3 col-md-3">
                     <div class="single_location">
                         <h3> <img src="img/icon/address.svg" alt=""> Адреса</h3>
-                        <p>600/D, Kings road, Green lane
-                            NewYork-2563</p>
+                        <p>м. Обухів вул. Київська 111а</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="single_location">
                         <h3> <img src="img/icon/support.svg" alt=""> Контакти</h3>
-                        <p>+38 063 123 1234 <br>
-                            support@logistico.com</p>
+                        <p>+38 063 354 14 91<br>
+                            +38 045 726 06 65<br>
+                            +38 068 560 41 42</p>
                     </div>
                 </div>
             </div>
@@ -442,7 +429,7 @@
   
   
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<!--    <script src="js/vendor/modernizr-3.5.0.min.js"></script>-->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -497,6 +484,15 @@
             // insert new image and remove old
             image.parentNode.insertBefore(new_image,image);
             image.parentNode.removeChild(image);
+
+        }
+        function orderBtn(btnId){
+            var selectId = btnId.replace("btn","");
+            console.log(selectId);
+            var selectBox = document.getElementById(selectId);
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+
 
         }
     </script>

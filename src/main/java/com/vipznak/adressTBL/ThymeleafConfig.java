@@ -12,15 +12,12 @@ import java.io.File;
 
 @Configuration
 public class ThymeleafConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
+        registry.
+                addResourceHandler("/img/**")
+                .addResourceLocations("file:" + System.getProperty("user.home") + File.separator);
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//        registry.
-//                addResourceHandler("/img/**")
-//                .addResourceLocations("/img/");
-//
-//
-//    }
+    }
 }
