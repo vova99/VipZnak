@@ -14,10 +14,10 @@ $(window).on('scroll', function () {
 
 
 
+var tableList;
 
 
 $(document).ready(function(){
-
 // mobile_menu
 var menu = $('ul#navigation');
 if(menu.length){

@@ -237,56 +237,24 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-5">
                     <div class="Estimate_info">
-                        <h3>Замовити адресну таблицю</h3>
-                        <p>Для того щоб замовити адресну таблицю заповніть на надішліть форму зворотного зв'язку.</p>
+                        <h3>Замовити дзвінок</h3>
+                        <p>Для того щоб замовити дзвінок залиште свої контактні дані та натисніть кнопку замовити.
+                        Наш менеджер зателофонує вам протягом години.
+                        </p>
                         <a href="#" class="boxed-btn3">+380 63 123 11 11</a>
                     </div>
                 </div>
-                <div class="col-xl-8 col-lg-8 col-md-7">
+                <div class="col-xl-8 col-lg-8 col-md-7 mt-4">
                     <div class="form">
                         <form action="/sendOrder" method="post" >
                             <div class="row">
-                                <div class="col-xl-6">
+                                <div class="col-12">
                                     <div class="input_field">
-                                        <input type="text" placeholder="ПІБ">
+                                        <input type="text" placeholder="Ім'я">
                                     </div>
-                                </div>
-                                <div class="col-xl-6">
                                     <div class="input_field">
                                         <input type="text" placeholder="Номер телефону">
                                     </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="input_field">
-                                        <input id="tableId" type="text" placeholder="Код товару">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="input_field">
-                                        <select class="wide">
-                                            <option value="blue" selected="true">Синій</option>
-                                            <option value="red">Червоний</option>
-                                            <option value="green">Зелений</option>
-                                            <option value="yellow">Жовтий</option>
-                                            <option value="burgundia">Бургундія</option>
-                                            <option value="brown">Коричневий</option>
-                                            <option value="biedge">Бежевий</option>
-                                            <option value="black">Чорний</option>
-                                            <option value="gold">Золотий</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="input_field">
-                                        <input type="text" placeholder="Адреса доставки">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="input_field">
-                                        <textarea placeholder="Побажаня"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
                                     <div class="input_field">
                                         <button class="boxed-btn3-line" type="submit">Замовити</button>
                                     </div>
@@ -411,19 +379,12 @@
     <script src="js/main.js"></script>
 
     <script type="text/javascript">
-        function changeFunc(selectID) {
+        function changeColorFunc(selectID) {
+            var tableId = selectID.replace("color","");
 
-
-            //var selectID = event.srcElement.id;
-            console.log(selectID);
-            var imgID = selectID+"img";
             var selectBox = document.getElementById(selectID);
-            console.log(selectBox);
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            console.log(selectedValue)
-            var imgPath = "/img/tables/"+selectID+selectedValue+".png";
-            console.log(imgPath)
-
+            var imgPath = selectBox.options[selectBox.selectedIndex].value;
+            var imgID = "img"+tableId;
             var new_image = new Image();
             var image =  document.getElementById(imgID);
             //set up the new image
@@ -433,18 +394,39 @@
             // insert new image and remove old
             image.parentNode.insertBefore(new_image,image);
             image.parentNode.removeChild(image);
+        }
+        $(switchId).is(":checked");
+        function changePriceForSize(selectID) {
+            var tableId = selectID.replace("size","");
+
+            var selectBox = document.getElementById(selectID);
+            var price = selectBox.options[selectBox.selectedIndex].value;
+            var priceSpanId = "price"+tableId;
+
+            var switchId = "switch"+tableId;
+
+            if (document.getElementById(switchId).checked){
+                price=parseInt(price)+180;
+            }
+            document.getElementById(priceSpanId).innerHTML=price;
 
         }
-        function orderBtn(btnId){
-            var selectId = btnId.replace("btn","");
-            console.log(selectId);
-            var selectBox = document.getElementById(selectId);
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
+        function changePriceBySwitch(switchId){
+            var tableId = switchId.replace("switch","");
+            var spanPrice = document.getElementById("price"+tableId);
+            var price = spanPrice.innerText;
 
-
+            if (document.getElementById(switchId).checked){
+                price=parseInt(price)+180;
+            }else{
+                price=parseInt(price)-180;
+            }
+            spanPrice.innerText=price;
         }
+
     </script>
+
 
 
 </body>

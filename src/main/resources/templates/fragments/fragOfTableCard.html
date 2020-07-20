@@ -17,33 +17,33 @@
                 <div class="row">
                     <div class="col-md-4 p-3 cardTable" th:each="tb : ${tables}">
                         <div class="" th:if="!${tb.colorList.isEmpty()}">
-                            <img id="td11img" th:src="@{${tb.colorList.get(0).imgPath}}" class="card-img-top" alt="...">
+                            <img th:id="'img'+${tb.tableID}" th:src="@{${tb.colorList.get(0).imgPath}}" class="card-img-top" alt="...">
                             <h5 class="card-title mt-3" th:text="'Назва: '+${tb.nameTable}"></h5>
                             <div class="switch-wrap d-flex justify-content-between">
                                 <p class="smallText">Світлоповертаюча основа (+180 грн)</p>
                                 <div class="primary-switch">
-                                    <input type="checkbox" id="primary-switch1" >
-                                    <label for="primary-switch1"></label>
+                                    <input type="checkbox"  th:id="'switch'+${tb.tableID}" onchange="changePriceBySwitch(this.id)">
+                                    <label th:for="'switch'+${tb.tableID}"></label>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input_field">
-                                            <select class="wide" id="td11" onchange="changeFunc(this.id)">
+                                            <select th:id="'color'+${tb.tableID}" class="wide"  onchange="changeColorFunc(this.id)">
                                                 <div th:each="cl, index : ${tb.colorList}">
-                                                    <option value="${tb.tableID}" selected="true" th:if="${index.count}==1" th:text="${cl.getColorName()}"></option>
-                                                    <option value="${tb.tableID}"  th:if="${index.count}!=1" th:text="${cl.colorName}"></option>
+                                                    <option th:value="${cl.imgPath}" selected="true" th:if="${index.count}==1" th:text="${cl.getColorName()}"></option>
+                                                    <option th:value="${cl.imgPath}"  th:if="${index.count}!=1" th:text="${cl.colorName}"></option>
                                                 </div>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input_field">
-                                            <select class="wide" id="" onchange="">
+                                            <select th:id="'size'+${tb.tableID}" class="wide"  onchange="changePriceForSize(this.id)">
                                                 <div>
-                                                    <option value="${tb.sizeSmall}" selected="true" th:if="${tb.sizeSmall}!=null" th:text="${tb.sizeSmall}"></option>
-                                                    <option value="${tb.sizeBig}"  th:if="${tb.sizeBig}!=null" th:text="${tb.sizeBig}"></option>
+                                                    <option th:value="${tb.priceForSmall}" selected="true" th:if="${tb.sizeSmall}!=null" th:text="${tb.sizeSmall}"></option>
+                                                    <option th:value="${tb.priceForBig}"  th:if="${tb.sizeBig}!=null" th:text="${tb.sizeBig}"></option>
                                                 </div>
                                             </select>
                                         </div>
@@ -52,8 +52,8 @@
                             </div>
 
                             <div>
-                                <p class="float-left mt-3">Ціна: <span id="td11price" th:text="${tb.priceForSmall}"></span>грн</p>
-                                <a th:href="@{/orderTable}" class="genric-btn primary radius float-right mt-2" onclick="orderBtn(this.id)" id="td11btn">Замовити</a>
+                                <p class="float-left mt-3">Ціна: <span th:id="'price'+${tb.tableID}" th:text="${tb.priceForSmall}"></span>грн</p>
+                                <a th:href="@{'/orderTableById-'+${tb.tableID}}" class="genric-btn primary radius float-right mt-2">Замовити</a>
                             </div>
 
                         </div>
@@ -65,4 +65,80 @@
         </div>
     </section>
 
+</th:block>
+
+<!--ORDER-->
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="orderBloc">
+
+    <section id="orderForm">
+        <div class="Estimate_area overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-5">
+                        <div class="Estimate_info">
+                            <h3>Замовити дзвінок</h3>
+                            <p>Для того щоб замовити дзвінок залиште свої контактні дані та натисніть кнопку замовити.
+                                Наш менеджер зателофонує вам протягом години.
+                            </p>
+                            <a href="#" class="boxed-btn3">+380 63 123 11 11</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-7">
+                        <div class="form">
+                            <form action="/sendOrder" method="post" >
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="input_field">
+                                            <input type="text" placeholder="Ім'я">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="input_field">
+                                            <input type="text" placeholder="Номер телефону">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="input_field">
+                                            <input id="tableId" type="text" placeholder="Код товару">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="input_field">
+                                            <select class="wide">
+                                                <option value="blue" selected="true">Синій</option>
+                                                <option value="red">Червоний</option>
+                                                <option value="green">Зелений</option>
+                                                <option value="yellow">Жовтий</option>
+                                                <option value="burgundia">Бургундія</option>
+                                                <option value="brown">Коричневий</option>
+                                                <option value="biedge">Бежевий</option>
+                                                <option value="black">Чорний</option>
+                                                <option value="gold">Золотий</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="input_field">
+                                            <input type="text" placeholder="Адреса доставки">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="input_field">
+                                            <textarea placeholder="Побажаня"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="input_field">
+                                            <button class="boxed-btn3-line" type="submit">Замовити</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </th:block>
