@@ -42,7 +42,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-2">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img th:src="@{img/logo.png}" alt="logo">
                             </a>
                         </div>
@@ -52,9 +52,9 @@
                             <div class="short_contact_list">
                                 <ul>
                                     <li><a href="#"> <i class="fa fa-envelope"></i> info@docmed.com</a></li>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
+                                    <li><a href="#"> <i class="fa fa-phone"></i> +38 068 560 4142</a></li>
+                                    <li><a href="#"> <i class="fa fa-phone"></i> +38 045 726 06 65</a></li>
+                                    <li><a href="#"> <i class="fa fa-phone"></i> +38 063 354 14 91</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,11 +77,7 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a  href="index.html">Головна</a></li>
-                                        <li><a  href="service.html">Про нас</a></li>
-                                        <li><a href="About.html">Доставка і оплата</a></li>
-                                        <li><a href="contact.html">Контакти</a></li>
-                                        <li><a href="contact.html">Умови для..</a></li>
+                                        <li><a  href="/">Головна</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -107,28 +103,34 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-5">
                         <div class="Estimate_info">
-                            <img th:id="'img'+${table.tableID}" th:src="@{${table.colorList.get(0).imgPath}}" width="100%" alt="...">
+                            <img th:id="'img'+${table.tableID}" th:src="@{${selectColor}}" width="100%" alt="...">
                             <h3 th:text="${table.nameTable}" class="mt-3"></h3>
-                            <h3 class="mt-3">Ціна: <span th:id="'price'+${table.tableID}" th:text="${table.priceForSmall}"></span>грн</h3>
+                            <h3 class="mt-3">Ціна: <span th:id="'price'+${table.tableID}" th:text="${selectPrice}"></span>грн</h3>
                         </div>
                 </div>
                 <div class="col-xl-8 col-lg-8 col-md-7">
                     <div class="form">
-                        <form action="/sendOrder" method="post" >
+                        <form >
+                            <input id="tableID" type="hidden" th:value="${table.tableID}">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Ім'я">
+                                        <input id="userName" type="text" placeholder="Ім'я">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Номер телефону">
+                                        <input id="phoneNumber" type="text" placeholder="Номер телефону">
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Адреса доставки">
+                                        <input id="textOnTable" type="text" placeholder="Текст на таблиці">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="input_field">
+                                        <input id="adressDelivery" type="text" placeholder="Адреса доставки">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -136,8 +138,8 @@
                                         <label th:for="'color'+${table.tableID}">Колір</label>
                                         <select th:id="'color'+${table.tableID}" class="wide"  onchange="changeColorFunc(this.id)">
                                             <div th:each="cl, index : ${table.colorList}">
-                                                <option th:value="${cl.imgPath}" selected="true" th:if="${index.count}==1" th:text="${cl.getColorName()}"></option>
-                                                <option th:value="${cl.imgPath}"  th:if="${index.count}!=1" th:text="${cl.colorName}"></option>
+                                                <option th:value="${cl.imgPath}" selected="true" th:if="${cl.imgPath.equals(selectColor)}" th:text="${cl.getColorName()}"></option>
+                                                <option th:value="${cl.imgPath}"  th:if="!${cl.imgPath.equals(selectColor)}" th:text="${cl.colorName}"></option>
                                             </div>
                                         </select>
                                     </div>
@@ -147,8 +149,10 @@
                                         <label th:for="'size'+${table.tableID}">Розмір</label>
                                         <select th:id="'size'+${table.tableID}" class="wide"  onchange="changePriceForSize(this.id)">
                                             <div>
-                                                <option th:value="${table.priceForSmall}" selected="true" th:if="${table.sizeSmall}!=null" th:text="${table.sizeSmall}"></option>
-                                                <option th:value="${table.priceForBig}"  th:if="${table.sizeBig}!=null" th:text="${table.sizeBig}"></option>
+                                                <option th:value="${table.priceForSmall}" selected="true" th:if="${table.priceForSmall.equals(selectPrice)}" th:text="${table.sizeSmall}"></option>
+                                                <option th:value="${table.priceForSmall}"  th:if="!${table.priceForSmall.equals(selectPrice)}" th:text="${table.sizeSmall}"></option>
+                                                <option th:value="${table.priceForBig}" selected="true" th:if="${table.priceForBig.equals(selectPrice)}" th:text="${table.sizeBig}"></option>
+                                                <option th:value="${table.priceForBig}"  th:if="!${table.priceForBig.equals(selectPrice)}" th:text="${table.sizeBig}"></option>
                                             </div>
                                         </select>
                                     </div>
@@ -162,7 +166,8 @@
                                     <div class="switch-wrap d-flex justify-content-between">
                                         <p class="whiteFont">Світлоповертаюча основа (+180 грн)</p>
                                         <div class="primary-switch">
-                                            <input type="checkbox"  th:id="'switch'+${table.tableID}" onchange="changePriceBySwitch(this.id)">
+                                            <input type="checkbox"  th:id="'switch'+${table.tableID}" onchange="changePriceBySwitch(this.id)" th:if="${checkSwitch}!=null" checked>
+                                            <input type="checkbox"  th:id="'switch'+${table.tableID}" onchange="changePriceBySwitch(this.id)" th:if="${checkSwitch}==null">
                                             <label th:for="'switch'+${table.tableID}"></label>
                                         </div>
                                     </div>
@@ -174,7 +179,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="input_field">
-                                        <button class="boxed-btn3-line" type="submit">Замовити</button>
+                                        <button class="boxed-btn3-line" type="button" onclick="sendOrderRequest()">Замовити</button>
                                     </div>
                                 </div>
 
@@ -232,7 +237,32 @@
 </footer>
 <!--/ footer end  -->
 <!-- Button trigger modal -->
-
+<div class="modal fade" id="modalSuccess" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Вaша заявка подана. Ми зателефонуємо вам протягом години.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="boxed-btn3-line" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalFail" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Щось пішло не так, спробуйте ще раз.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="boxed-btn3-line" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- JS here -->
 <!--    <script src="js/vendor/modernizr-3.5.0.min.js"></script>-->
@@ -284,7 +314,6 @@
         image.parentNode.insertBefore(new_image,image);
         image.parentNode.removeChild(image);
     }
-    $(switchId).is(":checked");
     function changePriceForSize(selectID) {
         var tableId = selectID.replace("size","");
 
@@ -312,6 +341,37 @@
             price=parseInt(price)-180;
         }
         spanPrice.innerText=price;
+    }
+    function sendOrderRequest() {
+        var tableId = $('#tableID').val();
+        var colorSelect = document.getElementById("color"+tableId);
+        var colorName = colorSelect.options[colorSelect.selectedIndex].innerHTML;
+
+        var sizeSelect = document.getElementById("size"+tableId);
+        var sizeName = sizeSelect.options[sizeSelect.selectedIndex].innerHTML;
+        console.log(tableId);
+        $.ajax({
+            method: "post",
+            url: "/sendOrder",
+            dataType: "text",
+            data: {
+                tableID: tableId,
+                userName: $('#userName').val(),
+                phoneNumber: $('#phoneNumber').val(),
+                textOnTable: $('#textOnTable').val(),
+                adressDelivery: $('#adressDelivery').val(),
+                colorName: colorName,
+                size: sizeName,
+                price: $('#price'+tableId).text(),
+                switchInput: $('#switch'+tableId).is(":checked")
+            },
+            success: function () {
+                $('#modalSuccess').modal('show');
+            },
+            error: function () {
+                $('#modalFail').modal('show');
+            }
+        });
     }
 
 </script>

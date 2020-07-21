@@ -16,8 +16,8 @@ public class Tables {
     private String nameTable;
     private String sizeSmall;
     private String sizeBig;
-    private int priceForSmall;
-    private int priceForBig;
+    private String priceForSmall;
+    private String priceForBig;
 
     @OneToMany
     private List<ColorOfTables> colorList;

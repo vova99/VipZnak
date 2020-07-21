@@ -36,13 +36,13 @@
 <body>
     <!-- header-start -->
     <header>
-        <div class="header-area ">
+        <div class="header-area">
             <div class="header-top_area d-none d-lg-block">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="/">
                                     <img th:src="@{img/logo.png}" alt="logo">
                                 </a>
                             </div>
@@ -52,9 +52,9 @@
                                 <div class="short_contact_list">
                                     <ul>
                                         <li><a href="#"> <i class="fa fa-envelope"></i> info@docmed.com</a></li>
-                                        <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
-                                        <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
-                                        <li><a href="#"> <i class="fa fa-phone"></i> 068 560 4142</a></li>
+                                        <li><a href="#"> <i class="fa fa-phone"></i> +38 068 560 4142</a></li>
+                                        <li><a href="#"> <i class="fa fa-phone"></i> +38 045 726 06 65</a></li>
+                                        <li><a href="#"> <i class="fa fa-phone"></i> +38 063 354 14 91</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -77,11 +77,10 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a  href="index.html">Головна</a></li>
-                                            <li><a  href="service.html">Про нас</a></li>
-                                            <li><a href="About.html">Доставка і оплата</a></li>
-                                            <li><a href="contact.html">Контакти</a></li>
-                                            <li><a href="contact.html">Умови для..</a></li>
+                                            <li><a  href="/">Головна</a></li>
+                                            <li><a  href="#workSchema">Схема роботи</a></li>
+                                            <li><a href="#delivery">Доставка і оплата</a></li>
+                                            <li><a href="#product">Таблиці</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -110,7 +109,7 @@
                 </div>
                 <div class="col-xl-5 col-md-6">
                     <div class="call_add_action">
-                        <a href="#" class="boxed-btn3">+38 063 123 1234</a>
+                        <a href="#orderForm" class="boxed-btn3">+38 063 354 14 91</a>
                     </div>
                 </div>
             </div>
@@ -118,7 +117,7 @@
     </div>
     <!-- /contact_action_area  -->
 
-    <section class="mt-4">
+    <section class="mt-5" id="workSchema">
         <div class="container">
               <div class="row">
                 <div class="col-xl-12">
@@ -137,7 +136,7 @@
                             <i class="fa fa-list fa-3x icon-color-config" aria-hidden="true"></i>
                         </div>
                         <h3>Замовлення</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
+                        <p>Ви обираєте адресну таблицю та залишаєте заявку на сайті.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -146,7 +145,7 @@
                             <i class="fa fa-check fa-3x icon-color-config" aria-hidden="true"></i>
                         </div>
                         <h3>Підтвердження</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
+                        <p>Ми телефонуємо та узгоджуємо всі деталі і побажання</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -155,7 +154,7 @@
                             <i class="fa fa-lightbulb-o fa-3x icon-color-config" aria-hidden="true"></i>
                         </div>
                         <h3>Розробка</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
+                        <p>Наші дизайнери малюють макет вашої таблиці.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -164,16 +163,7 @@
                             <i class="fa fa-cog fa-3x icon-color-config" aria-hidden="true"></i>
                         </div>
                         <h3>Виробництво</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_transport">
-                        <div class="icon">
-                            <i class="fa fa-credit-card-alt fa-3x icon-color-config" aria-hidden="true"></i>
-                        </div>
-                        <h3>Олата</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
+                        <p>Виготовляємо таблицю протягом трьох днів.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -182,14 +172,23 @@
                             <i class="fa fa-truck fa-3x icon-color-config" aria-hidden="true"></i>
                         </div>
                         <h3>Доставка</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eveniet sed sequi, facilis.</p>
+                        <p>Ми відправляємо товар зручним для вас способом.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single_transport">
+                        <div class="icon">
+                            <i class="fa fa-credit-card-alt fa-3x icon-color-config" aria-hidden="true"></i>
+                        </div>
+                        <h3>Олата</h3>
+                        <p>Оплата здійснюється на карту банку або наложеним платежем.</p>
                     </div>
                 </div>
             </div>
         </div>     
     </section>
    
-        <section class="mt-3">
+        <section class="mt-5" id="delivery">
             <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -241,22 +240,23 @@
                         <p>Для того щоб замовити дзвінок залиште свої контактні дані та натисніть кнопку замовити.
                         Наш менеджер зателофонує вам протягом години.
                         </p>
-                        <a href="#" class="boxed-btn3">+380 63 123 11 11</a>
+                        <a href="" class="boxed-btn3">+38 063 354 14 91</a>
                     </div>
                 </div>
                 <div class="col-xl-8 col-lg-8 col-md-7 mt-4">
                     <div class="form">
-                        <form action="/sendOrder" method="post" >
+                        <form th:action="@{/sendCall}" method="post" >
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Ім'я">
+                                        <input id="userNameRequest" type="text" placeholder="Ім'я" name="userName">
                                     </div>
                                     <div class="input_field">
-                                        <input type="text" placeholder="Номер телефону">
+                                        <input id="phoneNumberRequest" type="text" placeholder="Номер телефону" name="phone">
                                     </div>
                                     <div class="input_field">
-                                        <button class="boxed-btn3-line" type="submit">Замовити</button>
+<!--                                        data-toggle="modal" data-target="#myModal"-->
+                                        <button class="boxed-btn3-line" type="button"  onclick="sendCallRequest()">Замовити</button>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +287,7 @@
                             <ul>
                                 <li> Швидко і якісно виконуємо замовлення </li>
                                 <li> Доступні ціни. </li>
-                                <li> Можливість оптової торгівлі.</li>
+                                <li> Можливість оптової торгівлі від 25 одиниць.</li>
                             </ul>
 
                             <div class="about_btn">
@@ -343,8 +343,37 @@
 </footer>
     <!--/ footer end  -->
 <!-- Button trigger modal -->
-  
-  
+    <!-- Modal -->
+    <div class="modal fade" id="modalSuccess" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Вaша заявка подана. Ми зателефонуємо вам протягом години.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boxed-btn3-line" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalFail" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Щось пішло не так, спробуйте ще раз.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boxed-btn3-line" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- JS here -->
 <!--    <script src="js/vendor/modernizr-3.5.0.min.js"></script>-->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
@@ -423,6 +452,21 @@
                 price=parseInt(price)-180;
             }
             spanPrice.innerText=price;
+        }
+        function sendCallRequest() {
+
+            $.ajax({
+                method: "post",
+                url: "/sendCall",
+                dataType: "text",
+                data: {userName : $('#userNameRequest').val(), phone: $("#phoneNumberRequest").val()},
+                success: function () {
+                    $('#modalSuccess').modal('show');
+                },
+                error: function () {
+                    $('#modalFail').modal('show');
+                }
+            });
         }
 
     </script>

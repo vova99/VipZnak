@@ -1,7 +1,7 @@
 <th:block xmlns="http://www.w3.org/1999/xhtml"
           xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="allTableList">
 
-    <section>
+    <section id="product">
         <div class="container mt-5">
             <div class="section-top-border">
                 <div class="row">
@@ -17,12 +17,13 @@
                 <div class="row">
                     <div class="col-md-4 p-3 cardTable" th:each="tb : ${tables}">
                         <div class="" th:if="!${tb.colorList.isEmpty()}">
+                            <form method="post" th:action="@{'/orderTableById-'+${tb.tableID}}">
                             <img th:id="'img'+${tb.tableID}" th:src="@{${tb.colorList.get(0).imgPath}}" class="card-img-top" alt="...">
                             <h5 class="card-title mt-3" th:text="'Назва: '+${tb.nameTable}"></h5>
                             <div class="switch-wrap d-flex justify-content-between">
                                 <p class="smallText">Світлоповертаюча основа (+180 грн)</p>
                                 <div class="primary-switch">
-                                    <input type="checkbox"  th:id="'switch'+${tb.tableID}" onchange="changePriceBySwitch(this.id)">
+                                    <input type="checkbox"  th:id="'switch'+${tb.tableID}" onchange="changePriceBySwitch(this.id)" name="checkSwitch">
                                     <label th:for="'switch'+${tb.tableID}"></label>
                                 </div>
                             </div>
@@ -30,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input_field">
-                                            <select th:id="'color'+${tb.tableID}" class="wide"  onchange="changeColorFunc(this.id)">
+                                            <select th:id="'color'+${tb.tableID}" class="wide" name="selectColor" onchange="changeColorFunc(this.id)">
                                                 <div th:each="cl, index : ${tb.colorList}">
                                                     <option th:value="${cl.imgPath}" selected="true" th:if="${index.count}==1" th:text="${cl.getColorName()}"></option>
                                                     <option th:value="${cl.imgPath}"  th:if="${index.count}!=1" th:text="${cl.colorName}"></option>
@@ -40,7 +41,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input_field">
-                                            <select th:id="'size'+${tb.tableID}" class="wide"  onchange="changePriceForSize(this.id)">
+                                            <select th:id="'size'+${tb.tableID}" class="wide"  name="selectPrice" onchange="changePriceForSize(this.id)">
                                                 <div>
                                                     <option th:value="${tb.priceForSmall}" selected="true" th:if="${tb.sizeSmall}!=null" th:text="${tb.sizeSmall}"></option>
                                                     <option th:value="${tb.priceForBig}"  th:if="${tb.sizeBig}!=null" th:text="${tb.sizeBig}"></option>
@@ -53,9 +54,9 @@
 
                             <div>
                                 <p class="float-left mt-3">Ціна: <span th:id="'price'+${tb.tableID}" th:text="${tb.priceForSmall}"></span>грн</p>
-                                <a th:href="@{'/orderTableById-'+${tb.tableID}}" class="genric-btn primary radius float-right mt-2">Замовити</a>
+                                <button type="submit" class="genric-btn primary radius float-right mt-2">Замовити</button>
                             </div>
-
+                            </form>
                         </div>
                     </div>
 
